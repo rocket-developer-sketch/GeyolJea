@@ -1,4 +1,4 @@
-package com.work.gyeoljea.auth;
+package com.work.gyeoljea.user.login;
 
 
 import java.util.Collection;
