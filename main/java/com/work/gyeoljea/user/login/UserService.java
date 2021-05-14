@@ -2,7 +2,10 @@ package com.work.gyeoljea.user.login;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.work.gyeoljea.DTO.UserInfoDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,11 +21,24 @@ import lombok.RequiredArgsConstructor;
 public class UserService implements UserDetailsService {
 	private final UserRepository userRepository;
 	
+	// 로그인 정보
 	@Override
-	public User loadUserByUsername(String email) throws UsernameNotFoundException{
+	public UserInfo loadUserByUsername(String email) throws UsernameNotFoundException{
 		// 기본 반환 타입 UserDetails 대신 자료형 User 반환
 		return userRepository.findByEmail(email)
 				.orElseThrow(() -> new UsernameNotFoundException((email)));
 		
 	}
+	
+	public Long save(UserInfoDto infoDto) {
+		 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		infoDto.setPassword(encoder.encode(infoDto.getPassword()));
+		
+		return userRepository.save(UserInfo.builder()
+				.email(infoDto.getEmail())
+				.auth(infoDto.getAuth())
+				.password(infoDto.getPassword()).build()).getCode();
+	}
+	
+	
 }

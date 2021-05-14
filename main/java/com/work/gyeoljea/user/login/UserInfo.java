@@ -30,7 +30,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
-public class User implements UserDetails{
+public class UserInfo implements UserDetails{
 	
 	/*JPA
 	 * @Id
@@ -70,7 +70,7 @@ public class User implements UserDetails{
 	private String auth;
 	
 	@Builder
-	public User(String email, String password, String auth) {
+	public UserInfo(String email, String password, String auth) {
 		this.email = email;
 		this.password = password;
 		this.auth = auth;

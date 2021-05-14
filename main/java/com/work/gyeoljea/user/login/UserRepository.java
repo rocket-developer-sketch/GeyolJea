@@ -52,6 +52,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * 	 == 복잡한 조건문 없이 null 값으로 인해 발생하는 예외를 처리할 수 있게 됨
  * 
  */
-public interface UserRepository extends JpaRepository<User, Long>{
-	Optional<User> findByEmail(String email);
+public interface UserRepository extends JpaRepository<UserInfo, Long>{
+	Optional<UserInfo> findByEmail(String email);
 }
