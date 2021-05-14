@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,6 +28,7 @@ import lombok.NoArgsConstructor;
  * 테이블과 자바 클래스가 매핑됨
  * 
  */
+@Table(name= "user_info")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
