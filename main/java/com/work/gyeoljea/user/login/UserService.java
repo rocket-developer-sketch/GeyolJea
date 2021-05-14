@@ -25,13 +25,14 @@ public class UserService implements UserDetailsService {
 	@Override
 	public UserInfo loadUserByUsername(String email) throws UsernameNotFoundException{
 		// 기본 반환 타입 UserDetails 대신 자료형 User 반환
+		// 필수 구현
 		return userRepository.findByEmail(email)
 				.orElseThrow(() -> new UsernameNotFoundException((email)));
 		
 	}
 	
 	public Long save(UserInfoDto infoDto) {
-		 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		infoDto.setPassword(encoder.encode(infoDto.getPassword()));
 		
 		return userRepository.save(UserInfo.builder()
